@@ -41,7 +41,7 @@ public class DictionaryManagement {
         String input = scanner.nextLine();
         for(Word words : dictionary.getWords()){
             if(words.getWord_target().contains(input) == true){
-                System.out.println(words.getWord_explain());
+                System.out.println(words.getWord_target() + "\t" + words.getWord_explain());
             }
         }
     }
