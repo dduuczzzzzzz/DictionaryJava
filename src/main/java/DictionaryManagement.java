@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.io.File;
 
 public class DictionaryManagement {
-    private static Dictionary dictionary = new Dictionary();
+    private Dictionary dictionary = new Dictionary();
 
     public void insertFromCommandline(){
         Scanner scanner = new Scanner(System.in);
@@ -38,10 +38,11 @@ public class DictionaryManagement {
     public void dictionaryLookup(){
         System.out.println("Nhap tu ban muon tim: ");
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        for(Word words : dictionary.getWords()){
-            if(words.getWord_target().contains(input) == true){
-                System.out.println(words.getWord_target() + "\t" + words.getWord_explain());
+        String s = scanner.nextLine();
+        for(Word w : dictionary.getWords()){
+            if(s.equals(w.getWord_target())){
+                System.out.println(w.getWord_explain());
+                break;
             }
         }
     }
