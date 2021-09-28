@@ -1,7 +1,7 @@
 Hello	Xin chao
 Bye	Tam biet
 Dog	Cho
-Cat 	Meo
+Cat	Meo
 Thanks	Cam on
 Translate	Dich
 Transport 	Phuong tien

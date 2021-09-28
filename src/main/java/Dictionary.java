@@ -1,13 +1,25 @@
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class Dictionary {
-    private ArrayList<Word> words = new ArrayList<>();
+    private final List<Word> words = new ArrayList<>();
 
-    public void insertWords(Word newWord){
+    Comparator<Word> wordComparator = Comparator.comparing(Word::getWord_target);
+
+    public void insertWord(Word newWord) {
         words.add(newWord);
     }
 
-    public ArrayList<Word> getWords(){
+    public void removeWord(String removedWord) {
+        words.removeIf(i -> i.getWord_target().equals(removedWord));
+    }
+
+    public void sortWords() {
+        words.sort(wordComparator);
+    }
+
+    public List<Word> getWords() {
         return words;
     }
 }

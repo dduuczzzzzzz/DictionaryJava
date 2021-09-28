@@ -1,55 +1,81 @@
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.Scanner;
 
 public class DictionaryManagement {
-    private Dictionary dictionary = new Dictionary();
+    private final Dictionary dictionary = new Dictionary();
 
-    public void insertFromCommandline(){
+    public void insertFromCommandline() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("So luong tu can them: ");
         int n = scanner.nextInt();
-        for(int i = 0; i<n; i++){
+        System.out.println("Nhap lan luot tu va nghia:");
+        for (int i = 0; i < n; i++) {
             Scanner input = new Scanner(System.in);
             String English = input.nextLine();
             String translate = input.nextLine();
-            Word nword = new Word(English, translate);
-            dictionary.insertWords(nword);
+            Word newWord = new Word(English, translate);
+            dictionary.insertWord(newWord);
         }
+        dictionary.sortWords();
     }
 
-    public void insertFromFile(){
-        try{
+    public void insertFromFile() {
+        try {
             File file;
-            file = new File("E:\\javaproject\\Dictionary project\\src\\main\\java\\dictionaries.txt");
+            file = new File("src/main/java/dictionaries.txt");
             Scanner sc = new Scanner(file);
-            while (sc.hasNextLine()){
+            while (sc.hasNextLine()) {
                 String[] s = sc.nextLine().split("\t");
                 String English = s[0];
                 String translate = s[1];
-                Word nword = new Word(English, translate);
-                dictionary.insertWords(nword);
+                Word newWord = new Word(English, translate);
+                dictionary.insertWord(newWord);
             }
-        }
-        catch (FileNotFoundException e){
+            dictionary.sortWords();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public void dictionaryLookup(){
+    public void removeWord() {
+        String removedWord;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhap tu ban muon xoa: ");
+        removedWord = input.nextLine();
+        dictionary.removeWord(removedWord);
+    }
+
+    private int binarySearch(List<Word> words, int l, int r, String wordToFind) {
+        if (l <= r) {
+            int mid = l + (r - 1) / 2;
+            if (words.get(mid).getWord_target().equals(wordToFind)) {
+                return mid;
+            }
+            if (words.get(mid).getWord_target().compareTo(wordToFind) > 0) {
+                return binarySearch(words, l, mid - 1, wordToFind);
+            }
+            return binarySearch(words, mid + 1, r, wordToFind);
+        }
+        return -1;
+    }
+
+    public void dictionaryLookup() {
+        int index;
         System.out.println("Nhap tu ban muon tim: ");
         Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine();
-        for(Word w : dictionary.getWords()){
-            if(s.equals(w.getWord_target())){
-                System.out.println(w.getWord_explain());
-                break;
-            }
+        index = binarySearch(dictionary.getWords(), 0, dictionary.getWords().size() - 1, s);
+        if (index == -1) {
+            System.out.println("Khong co tu ban can tim");
+        }
+        else{
+            System.out.println(dictionary.getWords().get(index).getWord_explain());
         }
     }
 
-    public Dictionary getDictionary(){
+    public Dictionary getDictionary() {
         return dictionary;
     }
-
-
 }

@@ -2,6 +2,7 @@ public class Word {
     private String word_target;
     private String word_explain;
 
+
     public void setWord_target(String word_target) {
         this.word_target = word_target;
     }
@@ -18,7 +19,7 @@ public class Word {
         return word_explain;
     }
 
-    public Word(String English, String translate){
+    public Word(String English, String translate) {
         this.word_target = English;
         this.word_explain = translate;
     }
