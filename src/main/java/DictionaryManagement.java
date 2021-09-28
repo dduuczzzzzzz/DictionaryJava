@@ -8,8 +8,9 @@ public class DictionaryManagement {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         for(int i = 0; i<n; i++){
-            String English = scanner.nextLine();
-            String translate = scanner.nextLine();
+            Scanner input = new Scanner(System.in);
+            String English = input.nextLine();
+            String translate = input.nextLine();
             Word nword = new Word(English, translate);
             dictionary.insertWords(nword);
         }

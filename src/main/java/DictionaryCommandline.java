@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DictionaryCommandline {
     private static DictionaryManagement dictionaryManagement = new DictionaryManagement();

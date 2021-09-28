@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class Dictionary {
-    private static ArrayList<Word> words = new ArrayList<>();
+    private ArrayList<Word> words = new ArrayList<>();
 
-    public static void insertWords(Word newWord){
+    public void insertWords(Word newWord){
         words.add(newWord);
     }
 
