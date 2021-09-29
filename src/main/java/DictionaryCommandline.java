@@ -10,11 +10,12 @@ public class DictionaryCommandline {
         System.out.println();
         System.out.println("Gõ 1: Tra 1 từ\tGõ 2: Thêm từ mới");
         System.out.println("Gõ 3: Xoá 1 từ\tGõ 4: Xem toàn bộ từ");
-        System.out.println("Gõ 5: Tìm bằng chữ cái\tGõ 0: Thoát");
+        System.out.println("Gõ 5: Tìm bằng chữ cái\tGõ 6: Sửa từ");
+        System.out.println("Gõ 0: Thoát");
         int n;
         Scanner input = new Scanner(System.in);
         n = input.nextInt();
-        if (n == 1 || n == 2 || n == 3 || n == 4 || n == 5 || n == 0) {
+        if (n == 1 || n == 2 || n == 3 || n == 4 || n == 5 || n == 6 || n == 0) {
             return n;
         } else {
             System.out.println("Khong hop le");
@@ -78,6 +79,9 @@ public class DictionaryCommandline {
                     break;
                 case 5:
                     dictionarySeacher();
+                    break;
+                case 6:
+                    dictionaryManagement.changeWord();
                     break;
                 case 0:
                     isRunning = false;
